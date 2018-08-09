@@ -1,0 +1,22 @@
+{
+  "name": "minimum-dashboard",
+  "version": "1.0.0",
+  "description": "minimum-dashboard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kennygt51/minimum-dashboard.git"
+  },
+  "author": "kennygt51",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kennygt51/minimum-dashboard/issues"
+  },
+  "homepage": "https://github.com/kennygt51/minimum-dashboard#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

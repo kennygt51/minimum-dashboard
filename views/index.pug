@@ -1,0 +1,125 @@
+doctype html
+html(lang="ja")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    title これだけダッシュボード
+    link(rel='stylesheet',type='text/css' href='bootstrap.min.css')
+    link(rel='stylesheet',type='text/css' href='stylesheets/style.css')
+    link(rel="icon" type="image/png" href="images/favicon.png")
+  body
+    header
+      nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
+        a.navbar-brand(href="/") これだけダッシュボード
+        button.navbar-toggler(type="button" data-toggle="collapse" data-target="#Navbar" aria-controls="Navbar" aria-expanded="false" aria-label="ナビゲーションの切替")
+          span.navbar-toggler-icon
+        #Navbar.collapse.navbar-collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item.active
+              a.nav-link(href="/")
+                | ホーム
+                span.sr-only (現位置)
+            li.nav-item
+              a.nav-link(href="https://github.com/kennygt51/minimum-dashboard") GitHub
+    //
+      カルーセル
+      ==================================================
+    main(role="main")
+      #myCarousel.carousel.slide(data-ride="carousel")
+        // インジケータ
+        ol.carousel-indicators
+          li.active(data-target="#myCarousel" data-slide-to="0")
+          li(data-target="#myCarousel" data-slide-to="1")
+          li(data-target="#myCarousel" data-slide-to="2")
+        .carousel-inner
+          .carousel-item.active
+            .container
+              .carousel-caption.text-left
+                h1 これだけダッシュボード
+                hr
+                p
+                  | 本サイトは、ITエンジニアの情報収集をサポートするサイトです。
+                  | 毎日「これだけ」チェックしていれば、ITエンジニアとしての最低限のインプットが出来るダッシュボードを目指しています。
+          .carousel-item
+            .container
+              .carousel-caption.text-left
+                h1 あえて情報をしぼる
+                hr
+                p
+                  | 本ダッシュボードは、インプットすべき情報を短い時間でチェック出来るよう、前日にネット上で話題になった情報を1日1回集計・表示しています。
+                  | 毎朝、朝ごはんを食べながらパラパラと見るような使い方を想定しています。
+          .carousel-item
+            .container
+              .carousel-caption.text-left
+                h1 駆け出しエンジニア向け
+                hr
+                p
+                  | 本サイトは、自分なりの情報収集のやり方がまだ固まっていない、駆け出しエンジニアをサポートする為に生まれました。
+                  | 毎朝本サイトをチェックすることを、生涯続くエンジニアとしてのインプットの第一歩として頂ければ幸いです。
+        a.carousel-control-prev(href="#myCarousel" role="button" data-slide="prev")
+          span.carousel-control-prev-icon(aria-hidden="true")
+          span.sr-only 前へ
+        a.carousel-control-next(href="#myCarousel" role="button" data-slide="next")
+          span.carousel-control-next-icon(aria-hidden="true")
+          span.sr-only 次へ
+      // /.carousel
+      //
+        マーケティングメッセージングとフィーチャー
+        ==================================================
+      // 残りのページを別のコンテナで囲んで、すべてのコンテンツを中央に配置
+      .container.marketing
+        // カルーセルの下にある3列のテキスト
+        .row
+          .col-lg-4
+            h4 はてブ（テクノロジー）
+            p 最終更新時間：#{HatenaTech.calculate_dt_format}
+            for hatena_items in HatenaTech.popular_items
+              .card.text-white.bg-info.mb-3.mx-auto(style='max-width: 20rem;')
+                .card-header Popular Score：#{hatena_items.popular_rank}
+                |
+                .card-body
+                  a(href=hatena_items.url,target="blank")
+                    h5.card-title #{hatena_items.title}
+                  p.card-text
+                  //
+                    a(class="btn btn-success",href=hatena_items.url,target="blank") Pocket
+                    a(class="btn btn-success",href=hatena_items.url,target="blank") Tweet
+          .col-lg-4
+            h4 Qiitaトレンド
+            p 最終更新時間：#{QiitaTrend.calculate_dt_format}
+            for qiita_items in QiitaTrend.popular_items
+              .card.text-white.bg-success.mb-3.mx-auto(style='max-width: 20rem;')
+                .card-header Popular Score：#{qiita_items.popular_rank}
+                |
+                .card-body
+                  a(href=qiita_items.url,target="blank")
+                    h5.card-title #{qiita_items.title}
+                  p.card-text
+                  //
+                    a(class="btn btn-success",href=qiita_items.url,target="blank") Pocket
+                    a(class="btn btn-success",href=qiita_items.url,target="blank") Tweet
+          .col-lg-4
+            h4 GitHubトレンド
+            p 最終更新時間：#{GitHubTrend.calculate_dt_format}
+            for github_items in GitHubTrend.popular_items
+              .card.text-white.bg-secondary.mb-3.mx-auto(style='max-width: 20rem;')
+                .card-header Popular Score：#{github_items.popular_rank}
+                |
+                .card-body
+                  a(href=github_items.url,target="blank")
+                    h5.card-title #{github_items.title}
+                  p.card-text
+                  //
+                    a(class="btn btn-outline-danger",href=github_items.url,target="blank") Pocket
+                    a(class="btn btn-outline-primary",href=github_items.url,target="blank") Tweet
+        // /.row
+
+      // /.container
+    // フッタ
+    footer.container
+      p ©2018｜
+        a(href="https://twitter.com/kennygt51" target="blank") kennygt51
+
+    script(src="jquery.min.js")
+    script(src="bootstrap.min.js")
+    script(src="popper.js")

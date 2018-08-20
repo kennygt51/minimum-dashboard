@@ -36,6 +36,7 @@ for(let m = 0; m < crawl_identifier_list.length; m++) {
     };
 
     let result_list = [];
+
     for(let i = 0; i < url_list.length; i++) {
       let score_cnt = 0
       for(let j = 0; j < calculate_items_list.length; j++) {
@@ -56,7 +57,7 @@ for(let m = 0; m < crawl_identifier_list.length; m++) {
     var test_qiita = new Calculatedata({
       calculate_dt        : new Date(),
       calculate_identifier: crawl_identifier_list[m],
-      popular_items: result_list
+      popular_items: result_list.slice(0,3)
     });
     test_qiita.save(function(err) {
       if (err) throw err;

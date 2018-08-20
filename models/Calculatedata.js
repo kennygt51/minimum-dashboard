@@ -1,3 +1,4 @@
+//集計後クローリングデータのスキーマ定義
 const mongoose = require('mongoose');
 
 const Calculatedata = mongoose.Schema({

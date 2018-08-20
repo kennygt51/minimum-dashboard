@@ -1,8 +1,69 @@
+/* 全体的なスタイル
+-  ------------------------------------------------- */
+/* フッターの下の空白と明るめの本文 */
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: #5a5a5a;
+}
+/* カルーセルをカスタマイズ
+-------------------------------------------------- */
+/* カルーセルの基本クラス */
+.carousel {
+  margin-bottom: 2rem;
+}
+/* img要素の配置のために高さを宣言 */
+.carousel-item {
+height: 24rem;
+background-color: #1e90ff;
+}
+/* マーケティング・コンテンツ
+-------------------------------------------------- */
+/* カルーセルの下の3列の中のテキストを整列 */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: 400;
+}
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
 }
 
-a {
-  color: #00B7FF;
+.github_header {
+  color: #333333;
 }
+
+/* フィーチャー
+------------------------- */
+.featurette-divider {
+  margin: 5rem 0; /* ブートストラップの&lt;hr&gt;をもっと外に出す */
+}
+/* マーケティングの見出しを細めにする */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.05rem;
+}
+/* レスポンシブCSS
+-------------------------------------------------- */
+@media (min-width: 40em) {
+/* カルーセルコンテンツのサイズを大きくする */
+.carousel-caption p {
+  margin-bottom: 1.25rem;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+.featurette-heading {
+  font-size: 50px;
+}
+}
+@media (min-width: 62em) {
+.featurette-heading {
+  margin-top: 7rem;
+}
+}
+
+a:link { color: #0044CC; }

@@ -1,6 +1,7 @@
-var mongoose = require('mongoose');
+//クローリングデータのスキーマ定義
+const mongoose = require('mongoose');
 
-var Crawldata = mongoose.Schema({
+const Crawldata = mongoose.Schema({
   crawl_dt: {type: Date,default: new Date()},
   crawl_identifier: String,
   items_list: [{

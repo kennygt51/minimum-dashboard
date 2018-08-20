@@ -1,22 +1,33 @@
 {
   "name": "minimum-dashboard",
-  "version": "1.0.0",
-  "description": "minimum-dashboard",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
+  "dependencies": {
+    "body-parser": "~1.13.1",
+    "cookie-parser": "~1.3.5",
+    "date-utils": "^1.2.21",
+    "debug": "~2.2.0",
+    "express": "~4.13.0",
+    "jade": "~1.11.0",
+    "mongoose": "^5.2.9",
+    "morgan": "~1.6.1",
+    "puppeteer": "^1.7.0",
+    "serve-favicon": "~2.3.0"
+  },
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kennygt51/minimum-dashboard.git"
   },
-  "author": "kennygt51",
+  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kennygt51/minimum-dashboard/issues"
   },
-  "homepage": "https://github.com/kennygt51/minimum-dashboard#readme",
-  "dependencies": {
-    "express": "^4.16.3"
-  }
+  "homepage": "https://github.com/kennygt51/minimum-dashboard#readme"
 }

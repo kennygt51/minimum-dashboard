@@ -2,15 +2,6 @@ const mongoose      = require('mongoose');
 const Crawldata     = require('../models/Crwaldata')
 const Calculatedata = require('../models/Calculatedata');
 
-/*
-const now       = new Date();
-const now_JST   = new Date(now.getFullYear(), now.getMonth(), now.getDate(),now.getHours() + 9,now.getMinutes(),now.getSeconds());
-now_JST.setDate(now_JST.getDate() - 1);
-console.log(now_JST);
-const yesterdat_JST = new Date(now_JST.getFullYear(),now_JST.getMonth(), now_JST.getDate());
-console.log(yesterdat_JST);
-*/
-
 // mongoDBへの接続の確立
 mongoose.connect('mongodb://localhost:27017/minimum-dash',function(err) {
   if(err) {
@@ -20,15 +11,7 @@ mongoose.connect('mongodb://localhost:27017/minimum-dash',function(err) {
   }
 });
 
-/*
-Crawldata.find({}, function(err, result) {
-  if (err) throw err;
-  console.log(result);
-  mongoose.disconnect();
-})
-*/
-
-const crawl_identifier_list = ['QiitaTrend','QiitaTrend']
+const crawl_identifier_list = ['QiitaTrend','HatenaTech','GitHubTrend'];
 
 for(let m = 0; m < crawl_identifier_list.length; m++) {
   Crawldata.find({ crawl_identifier: crawl_identifier_list[m] }).sort('-crawl_dt').limit(2).exec(function(err, result){
@@ -63,8 +46,6 @@ for(let m = 0; m < crawl_identifier_list.length; m++) {
       let tmp_title;
 
       for(let k = 0; k < calculate_items_list.length; k++) {
-        //console.log(calculate_items_list[k]['url'])
-        //console.log(url_list[i])
         if (calculate_items_list[k]['url'] == url_list[i]) {
           tmp_title = calculate_items_list[k]['title']
         };

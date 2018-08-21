@@ -25,7 +25,7 @@ mongoose.connect('mongodb://localhost:27017/minimum-dash',function(err) {
   }
 });
 
-puppeteer.launch().then(async browser => {
+puppeteer.launch({args: ['--no-sandbox']}).then(async browser => {
     const page = await browser.newPage();
     await page.goto(url_github_domain + '/trending');
 

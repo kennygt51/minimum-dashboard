@@ -1,10 +1,14 @@
+/*
+  Qiitaトレンドをクローリングするスクリプト
+*/
+
 require('date-utils');
-const puppeteer = require('puppeteer');
-const mongoose = require('mongoose');
-const Crawldata = require('../models/Crwaldata')
+const puppeteer   = require('puppeteer');
+const mongoose    = require('mongoose');
+const Crawldata   = require('../models/Crwaldata')
 
 //リンク先アドレス作成に使用する為、Qiitaのドメインを定義
-const url_qiita_domain = 'https://qiita.com/'
+const url_qiita_domain = 'https://qiita.com'
 //クローリング先の識別子
 const crawl_identifier = 'QiitaTrend'
 //結果JSONにデータを保持させるため、クローリング実施時間を取得

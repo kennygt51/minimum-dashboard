@@ -1,8 +1,12 @@
+/*
+  はてぶテクノロジーカテゴリをクローリングするスクリプト
+*/
+
 require('date-utils');
-const FeedParser = require('feedparser');
-const request = require('request'); // for fetching the feed
-const mongoose = require('mongoose');
-const Crawldata = require('../models/Crwaldata')
+const FeedParser  = require('feedparser');
+const request     = require('request');
+const mongoose    = require('mongoose');
+const Crawldata   = require('../models/Crwaldata')
 
 //RSS配信先URLを定義
 const url_hatena_rss = 'http://b.hatena.ne.jp/hotentry/it.rss'
@@ -14,7 +18,7 @@ const crawl_dt         = new Date();
 let result = {'crawl_dt': crawl_dt,'crawl_identifier': crawl_identifier};
 let items_list = [];
 
-// feedparser定義
+//feedparser定義
 const feedparser = new FeedParser();
 const options = {
   url: url_hatena_rss,
@@ -41,7 +45,7 @@ req.on('error', function (error) {
 
 //responseイベントが発生した時にconsole
 req.on('response', function (res) {
-  var stream = this;
+  const stream = this;
 
   if (res.statusCode !== 200) {
     this.emit('error', new Error('Bad status code'));

@@ -1,14 +1,13 @@
 "use strict"; //厳密なコーディングを開発者に求めるstrictモード
 require('date-utils');
-const http            = require('http'); //Node.jsの標準ライブラリであるhttpをインポート（Node.jsでHTTP通信が扱える様になる）
-const express         = require('express'); //Expressをインポート
-const bodyparser      = require('body-parser'); //body-parser
-const path            = require('path'); //pathモジュール（絶対パス作成のために使用）
-const mongoose        = require('mongoose'); //mongodbに接続するモジュール
+const http            = require('http');                   //Node.jsの標準ライブラリであるhttpをインポート（Node.jsでHTTP通信が扱える様になる）
+const express         = require('express');                //Expressをインポート
+const bodyparser      = require('body-parser');            //body-parser
+const path            = require('path');                   //pathモジュール（絶対パス作成のために使用）
+const mongoose        = require('mongoose');               //mongodbに接続するモジュール
 const Calculatedata   = require('./models/Calculatedata'); //DBに接続する為のスキーマを読み込む。
-
-const app       = express() //expressのインスタンスであるappに対して様々なミドルウェアを設定することで、Webアプリを実装していく。
-
+//expressのインスタンスであるappに対して様々なミドルウェアを設定することで、Webアプリを実装していく。
+const app       = express()
 
 
 // mongoDBへの接続の確立
@@ -23,24 +22,22 @@ mongoose.connect('mongodb://localhost:27017/minimum-dash',function(err) {
 
 //body-parserの設定（実際にリクエストを返すルーティングよりも前の位置で設定する）
 app.use(bodyparser());
-
 //公開ディレクトリ
 app.use(express.static('node_modules/bootstrap/dist/css'));
 app.use(express.static('node_modules/bootstrap/dist/js'));
 app.use(express.static('node_modules/jquery/dist'));
 app.use(express.static('node_modules/popper.js/dist/umd'));
-
 app.use(express.static('public'));
-
 // テンプレートエンジンの設定
 app.set('views',path.join(__dirname,'views')); //テンプレートを入れているviewsディレクトリの絶対パスを作成する
 app.set('view engine','pug');
 
+
+//ルーティング
 app.get("/", function(req,res,next) {
-  Calculatedata.find({}, function(err, data) {
+  Calculatedata.find({}).sort('-calculate_dt').limit(3).exec(function(err, data) {
     if(err) throw err;
-
-
+    //リスト内に格納された連想配列を分割
     let QiitaTrend = data.filter(function(item, index){
       if (item.calculate_identifier == 'QiitaTrend') return true;
     });
@@ -50,6 +47,7 @@ app.get("/", function(req,res,next) {
     let GitHubTrend = data.filter(function(item, index){
       if (item.calculate_identifier == 'GitHubTrend') return true;
     });
+    //画面表示用に日時フォーマット整形
     HatenaTech[0]['calculate_dt_format']  = HatenaTech[0]['calculate_dt'].toFormat("YYYY/MM/DD HH24時MI分");
     QiitaTrend[0]['calculate_dt_format']  = QiitaTrend[0]['calculate_dt'].toFormat("YYYY/MM/DD HH24時MI分");
     GitHubTrend[0]['calculate_dt_format'] = GitHubTrend[0]['calculate_dt'].toFormat("YYYY/MM/DD HH24時MI分");
@@ -61,6 +59,7 @@ app.get("/", function(req,res,next) {
     });
   });
 });
+
 
 // Node.jsで定義したhttpサーバに、Expressのインスタンスであるappを設置して、ローカルホストの3000ポートに関連付けている
 var server = http.createServer(app);

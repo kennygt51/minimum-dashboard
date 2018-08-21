@@ -1,6 +1,10 @@
+/*
+  GitHubトレンドをクローリングするスクリプト
+*/
+
 require('date-utils');
 const puppeteer = require('puppeteer');
-const mongoose = require('mongoose');
+const mongoose  = require('mongoose');
 const Crawldata = require('../models/Crwaldata')
 
 //リンク先アドレス作成に使用する為、GitHubのドメインを定義

@@ -6,6 +6,8 @@ body {
   padding-bottom: 3rem;
   color: #5a5a5a;
 }
+/* リンクの色を濃くする */
+a:link { color: #0044CC; }
 /* カルーセルをカスタマイズ
 -------------------------------------------------- */
 /* カルーセルの基本クラス */
@@ -65,5 +67,3 @@ background-color: #1e90ff;
   margin-top: 7rem;
 }
 }
-
-a:link { color: #0044CC; }

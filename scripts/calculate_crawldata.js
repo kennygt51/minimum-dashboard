@@ -72,6 +72,10 @@ for(let m = 0; m < crawl_identifier_list.length; m++) {
       };
       result_list.push({'popular_rank': score_cnt,'url':url_list[i],'title':tmp_title});
     };
+    //Popular_rankで降順ソート
+    result_list.sort(function (a,b) {
+      return (a.popular_rank > b.popular_rank) ? -1 : 1;
+    });
     /*
     console.log(result_list);
     [ { popular_rank: 20,

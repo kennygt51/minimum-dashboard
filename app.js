@@ -51,6 +51,7 @@ app.get("/", function(req,res,next) {
     HatenaTech[0]['calculate_dt_format']  = HatenaTech[0]['calculate_dt'].toFormat("YYYY/MM/DD HH24時MI分");
     QiitaTrend[0]['calculate_dt_format']  = QiitaTrend[0]['calculate_dt'].toFormat("YYYY/MM/DD HH24時MI分");
     GitHubTrend[0]['calculate_dt_format'] = GitHubTrend[0]['calculate_dt'].toFormat("YYYY/MM/DD HH24時MI分");
+
     //投稿一覧のデータ（msgsオブジェクト）を、テンプレートエンジンに渡す
     return res.render('index',{
       QiitaTrend: QiitaTrend[0],

@@ -51,7 +51,15 @@ app.get("/", function(req,res,next) {
     HatenaTech[0]['calculate_dt_format']  = HatenaTech[0]['calculate_dt'].toFormat("YYYY/MM/DD HH24時MI分");
     QiitaTrend[0]['calculate_dt_format']  = QiitaTrend[0]['calculate_dt'].toFormat("YYYY/MM/DD HH24時MI分");
     GitHubTrend[0]['calculate_dt_format'] = GitHubTrend[0]['calculate_dt'].toFormat("YYYY/MM/DD HH24時MI分");
-
+    HatenaTech[0]['popular_items'].sort(function (a,b) {
+      return (a.popular_rank > b.popular_rank) ? -1 : 1;
+    });
+    QiitaTrend[0]['popular_items'].sort(function (a,b) {
+      return (a.popular_rank > b.popular_rank) ? -1 : 1;
+    });
+    GitHubTrend[0]['popular_items'].sort(function (a,b) {
+      return (a.popular_rank > b.popular_rank) ? -1 : 1;
+    });
     //投稿一覧のデータ（msgsオブジェクト）を、テンプレートエンジンに渡す
     return res.render('index',{
       QiitaTrend: QiitaTrend[0],
